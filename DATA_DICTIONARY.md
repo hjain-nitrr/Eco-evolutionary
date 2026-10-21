@@ -1,19 +1,10 @@
 # Data dictionary
 
-## Observational files
+## Scope and public sources
 
-`data/noaa_aggi_raw.csv` preserves the NOAA source bytes. Its two columns named `Total` have different meanings: the first is total long-lived greenhouse-gas effective radiative forcing in W m^-2; the second is CO2-equivalent concentration, not forcing. Use the processed files to avoid ambiguous duplicate column names.
+Only author-processed/model-generated CSV and JSON data and documentation are included. Official NOAA/NASA raw datasets are linked in the README. No figures, figure-data exports, MATLAB files or source code are included. Raw snapshot hashes in the original provenance record identify inputs retained by the authors; they are not a list of redistributed files.
 
-`data/noaa_aggi_1979_2024.csv` has 46 annual rows:
-
-| Column | Meaning / units |
-|---|---|
-| `Year` | Calendar year, 1979–2024 |
-| `CO2_Wm2` | CO2 effective radiative forcing, W m^-2 |
-| `Total_Wm2` | Total long-lived greenhouse-gas effective radiative forcing, W m^-2 |
-| `AGGI` | Annual Greenhouse Gas Index, dimensionless; 1990 = 1 |
-
-`data/nasa_gistemp_v4_snapshot.csv` preserves the frozen numerical-text snapshot. The first line is a title, the second a header. Monthly columns and `J-D` (annual), `D-N`, `DJF`, `MAM`, `JJA`, `SON` report temperature anomalies relative to 1951–1980. Temperature-anomaly increments in degrees Celsius equal increments in kelvin. Source missing-value markers must not be treated as zero. The analysis uses `J-D` only for 1979–2024; the snapshot also contains years outside that analysis window.
+## Processed annual observations
 
 `data/observations_1979_2024.csv` aligns the annual records:
 
@@ -61,34 +52,4 @@ Five rows, one per parameter (`k`, `D`, `E`, `r`, `nu`). `PRCC_T` and `PRCC_x` a
 
 ## Aggregate results and validation
 
-`tables/results.json` and `tables/results.mat` contain aggregate physical, recovery, ceiling, uncertainty and baseline-parameter results. `tables/validation.json`, `tables/cost_convention_checks.json` and `tables/assumption_figure_checks.json` retain the original finite numerical check results. `metadata/computation_contract.json`, `metadata/bounded_run_manifest.json` and `metadata/cost_check_provenance.json` document the declared ranges, software, seeds, historical execution and original artifact hashes. Their source-code references describe withheld files.
-
-## Figure-data schema
-
-`figure_data/index.json` lists the 21 panel stems, number of axes and number of numeric graphic objects. Each `<panel>.json` has `panel`, `source_figure`, export method, software and `axes`. Each axis records its title, coordinate labels, scales, limits, color limits and `objects`. Labels are retained as saved; some are cell arrays of strings. Each object records its graphics type, display name and available numeric properties:
-
-- `XData`, `YData`, `ZData`: coordinates; vectors or matrices as appropriate.
-- `CData`, `FaceVertexCData`: scalar/category/color arrays as stored by MATLAB.
-- `UData`, `VData`, `WData`: vector-field components.
-- Error-bar delta properties: positive/negative coordinate uncertainties as plotted.
-- `ContourMatrix`, `LevelList`: MATLAB contour representation and levels.
-- `Value`: constant reference-line coordinate; its orientation is inferred from the labeled panel/context.
-- `Values`, `BinEdges`, `BaseValue`: bar/histogram properties when present.
-
-JSON `null` represents nonfinite numeric values. The `nonfinite` object records NaN and signed-infinity positions using **one-based MATLAB column-major linear indices**. `<panel>.mat` preserves the same `figureData` structure with native numeric arrays and nonfinite values. Scientific traces may coexist with legend proxies, reference curves and graphics children; object order is not a scientific ordering and duplicate rendered components must not be treated as additional independent observations.
-
-| Panels | Content |
-|---|---|
-| 1a, 1b, 1c | Observations and fixed-temperature radiative-scale comparison |
-| 2a, 2b | Feasible equilibrium branches for two reference positions |
-| 3a | Reference-position/selection atlas: CData codes 1=LE, 2=mixed, 3=HE, 4=LE+mixed, 5=LE+HE |
-| 3b, 3c | Phase-plane trajectories, nullcline and vector-field data |
-| 4a, 4b | Local recovery spectrum, exchanges and rate ceiling |
-| 4c, 4d | Temperature and strategy transients |
-| 5a | Equilibrium compliance atlas: CData 1=LE compliant, 2=mixed compliant, 3=mixed exceeds, 4=HE exceeds |
-| 5b, 5c | Finite-horizon exceedance and Lyapunov-certificate data |
-| 6a, 6b, 6c | Regime fractions and conditional PRCCs |
-| 7a, 7b | Cost-convention comparisons |
-| 8a | Heat capacity and fastest local recovery time |
-
-`metadata/figure_source_hashes.json` identifies the original saved figures used for extraction. No simulations were rerun to make these exports. Shape-preserving graphics-property data are supplied for transparency; use the manuscript's definitions and the tabular data for statistical analysis.
+`tables/results.json` contains aggregate physical, recovery, ceiling, uncertainty and baseline-parameter results. `tables/validation.json`, `tables/cost_convention_checks.json` and `tables/assumption_figure_checks.json` retain the original finite numerical check results.

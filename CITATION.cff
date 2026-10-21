@@ -10,5 +10,5 @@ authors:
 version: "2026-10-21-data-v1"
 date-released: 2026-10-21
 url: "https://github.com/hjain-nitrr/Eco-evolutionary"
-repository-code: "https://github.com/hjain-nitrr/Eco-evolutionary"
-abstract: "Frozen observations, numerical tables and saved-figure data for a radiative evolutionary game. MATLAB source code is available from the corresponding author on request."
+repository: "https://github.com/hjain-nitrr/Eco-evolutionary"
+abstract: "Author-processed annual observations and model-generated numerical tables for a radiative evolutionary game. Public source data are linked externally; MATLAB source code is available from the corresponding author on request."
