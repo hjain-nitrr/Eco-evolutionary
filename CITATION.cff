@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "Please cite this repository when using the processed or model-generated data, and cite NOAA/NASA for their observations."
+type: dataset
+title: "Data for Global convergence and transient temperature limits in a radiative evolutionary game of emission strategies"
+authors:
+  - family-names: Jain
+    given-names: Himanshu
+  - family-names: Mishra
+    given-names: Purnedu
+version: "2026-10-21-data-v1"
+date-released: 2026-10-21
+url: "https://github.com/hjain-nitrr/Eco-evolutionary"
+repository-code: "https://github.com/hjain-nitrr/Eco-evolutionary"
+abstract: "Frozen observations, numerical tables and saved-figure data for a radiative evolutionary game. MATLAB source code is available from the corresponding author on request."
